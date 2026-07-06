@@ -1,3 +1,4 @@
+
 # 🖼️ Wallpaper Update
 
 > Un script sencillo y potente para actualizar tu fondo de pantalla con imágenes aleatorias desde la terminal
@@ -9,7 +10,6 @@
 ## 📋 Descripción
 
 **wallpaper_update.sh** es un script en Bash que selecciona aleatoriamente una imagen de un directorio especificado, la redimensiona y la establece como fondo de pantalla. Perfecto para:
-
 - 🌄 Rotar fondos de pantalla automáticamente
 - 🎬 Crear presentaciones de diapositivas con cron
 - 🖥️ Personalizar tu entorno de trabajo
@@ -46,9 +46,13 @@ sudo pacman -S imagemagick
 
 # macOS (con Homebrew)
 brew install imagemagick
-🚀 Instalación
-Instalación rápida
-bash
+```
+
+## 🚀 Instalación
+
+### Instalación rápida
+
+```bash
 # Clonar el repositorio
 git clone https://github.com/tu-usuario/wallpaper-update.git
 cd wallpaper-update
@@ -60,133 +64,128 @@ chmod +x wallpaper_update.sh
 cp wallpaper_update.sh ~/bin/
 # o
 sudo cp wallpaper_update.sh /usr/local/bin/
-Instalación manual
-Descarga el script
+```
 
-Colócalo en ~/bin/wallpaper_update.sh
+### Instalación manual
 
-Hazlo ejecutable: chmod +x ~/bin/wallpaper_update.sh
+1. Descarga el script
+2. Colócalo en `~/bin/wallpaper_update.sh`
+3. Hazlo ejecutable: `chmod +x ~/bin/wallpaper_update.sh`
+4. Asegura que `~/bin` está en tu PATH
 
-Asegura que ~/bin está en tu PATH
+## 📖 Uso
 
-📖 Uso
-Sintaxis básica
-bash
+### Sintaxis básica
+```bash
 wallpaper_update.sh [OPCIONES] [DIRECTORIO] [PATRÓN]
-Modo simple (parámetros posicionales)
-bash
+```
+### Modo simple (parámetros posicionales)
+```bash
 # Usar valores por defecto
 wallpaper_update.sh
-
 # Especificar directorio (usa patrón por defecto: movie*.jpg)
 wallpaper_update.sh ~/Pictures/wallpapers
-
 # Especificar directorio y patrón
-wallpaper_update.sh ~/Pictures/wallpapers "nature*.jpg"
-wallpaper_update.sh ~/Fotos "wallpaper*night*.jpg"
-Modo avanzado (con opciones)
-bash
+wallpaper_update.sh ~/Pictures/wallpapers \"nature*.jpg\"
+wallpaper_update.sh ~/Fotos \"wallpaper*night*.jpg\"
+```
+### Modo avanzado (con opciones)
+```bash
 # Opciones completas
-wallpaper_update.sh -d ~/Pictures/wallpapers -p "movie*.jpg" -o ~/fondo.jpg -r "75%"
-
+wallpaper_update.sh -d ~/Pictures/wallpapers -p \"movie*.jpg\" -o ~/fondo.jpg -r \"75%\"
 # Redimensionar al 60%
-wallpaper_update.sh -d ~/Imagenes -p "*.png" -r "60%"
-
+wallpaper_update.sh -d ~/Imagenes -p \"*.png\" -r \"60%\"
 # Cambiar archivo de salida
-wallpaper_update.sh -d ~/Fotos -p "wallpaper*.jpg" -o ~/.background.jpg
-Opciones disponibles
-Opción	Descripción	Valor por defecto
--d, --dir	Directorio de búsqueda	~/Pictures/wallpaper
--p, --pattern	Patrón de archivos (glob)	movie*.jpg
--o, --output	Archivo de salida	~/.local/share/backgrounds/terminal_bg.jpg
--r, --resize	Tamaño de redimensionamiento	50%
--h, --help	Mostrar ayuda	-
-🔄 Automatización con Crontab
-Ejemplos de tareas programadas
-cron
+wallpaper_update.sh -d ~/Fotos -p \"wallpaper*.jpg\" -o ~/.background.jpg
+```
+### Opciones disponibles
+| Opción | Descripción | Valor por defecto |
+|--------|-------------|-------------------|
+| `-d, --dir` | Directorio de búsqueda | `~/Pictures/wallpaper` |
+| `-p, --pattern` | Patrón de archivos (glob) | `movie*.jpg` |
+| `-o, --output` | Archivo de salida | `~/.local/share/backgrounds/terminal_bg.jpg` |
+| `-r, --resize` | Tamaño de redimensionamiento | `50%` |
+| `-h, --help` | Mostrar ayuda | - |
+## 🔄 Automatización con Crontab
+### Ejemplos de tareas programadas
+```cron
 # Cambiar wallpaper cada hora
 0 * * * * /home/tu_usuario/bin/wallpaper_update.sh
-
 # Cambiar cada 30 minutos
 */30 * * * * /home/tu_usuario/bin/wallpaper_update.sh
-
 # Cambiar al iniciar sesión
 @reboot /home/tu_usuario/bin/wallpaper_update.sh
-
 # Diferentes configuraciones para diferentes momentos
 # Mañana - wallpapers de naturaleza
-0 6 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/nature "nature*.jpg"
+0 6 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/nature \"nature*.jpg\"
 # Tarde - wallpapers de películas
-0 14 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/movies "movie*.jpg"
+0 14 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/movies \"movie*.jpg\"
 # Noche - wallpapers oscuros
-0 22 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/night "*night*.jpg"
-Configurar crontab
-bash
+0 22 * * * /home/tu_usuario/bin/wallpaper_update.sh ~/Pictures/night \"*night*.jpg\"
+```
+### Configurar crontab
+```bash
 # Editar crontab
 crontab -e
-
 # Agregar las líneas deseadas
 # Guardar y salir
-💡 Ejemplos prácticos
-Crear alias para diferentes colecciones
-Agrega esto a tu ~/.bashrc:
-
-bash
+```
+## 💡 Ejemplos prácticos
+### Crear alias para diferentes colecciones
+Agrega esto a tu `~/.bashrc`:
+```bash
 # Alias para diferentes colecciones de wallpapers
-alias wall-movie='wallpaper_update.sh ~/Pictures/wallpapers "movie*.jpg"'
-alias wall-nature='wallpaper_update.sh ~/Pictures/wallpapers "nature*.jpg"'
-alias wall-anime='wallpaper_update.sh ~/Pictures/wallpapers "anime*.jpg"'
-alias wall-night='wallpaper_update.sh ~/Pictures/wallpapers "*night*.jpg"'
-
+alias wall-movie='wallpaper_update.sh ~/Pictures/wallpapers \"movie*.jpg\"'
+alias wall-nature='wallpaper_update.sh ~/Pictures/wallpapers \"nature*.jpg\"'
+alias wall-anime='wallpaper_update.sh ~/Pictures/wallpapers \"anime*.jpg\"'
+alias wall-night='wallpaper_update.sh ~/Pictures/wallpapers \"*night*.jpg\"'
 # Función flexible
 wall() {
-    local dir="${1:-$HOME/Pictures/wallpapers}"
-    local pattern="${2:-movie*.jpg}"
-    wallpaper_update.sh "$dir" "$pattern"
+    local dir=\"${1:-$HOME/Pictures/wallpapers}\"
+    local pattern=\"${2:-movie*.jpg}\"
+    wallpaper_update.sh \"$dir\" \"$pattern\"
 }
-Combinar con otros comandos
-bash
+```
+### Combinar con otros comandos
+```bash
 # Mostrar la imagen seleccionada
 wallpaper_update.sh && feh ~/.local/share/backgrounds/terminal_bg.jpg
-
 # Crear una presentación de diapositivas
 while true; do
     wallpaper_update.sh
     sleep 300  # Cambiar cada 5 minutos
 done
-🐛 Solución de problemas
-Error: "ImageMagick no está instalado"
-bash
+```
+## 🐛 Solución de problemas
+### Error: \"ImageMagick no está instalado\"
+```bash
 # Instalar ImageMagick según tu distribución
 sudo apt install imagemagick  # Debian/Ubuntu
 sudo dnf install imagemagick  # Fedora
 sudo pacman -S imagemagick    # Arch
-Error: "No se encontraron archivos"
+```
+### Error: \"No se encontraron archivos\"
 Verifica que:
-
-El directorio existe y es accesible
-
-El patrón coincide con archivos existentes
-
-Tienes permisos de lectura en el directorio
-
-bash
+- El directorio existe y es accesible
+- El patrón coincide con archivos existentes
+- Tienes permisos de lectura en el directorio
+```bash
 # Listar archivos para verificar
 ls -la ~/Pictures/wallpapers/movie*.jpg
-El wallpaper no se actualiza
+```
+### El wallpaper no se actualiza
 Algunos entornos DE requieren comandos adicionales:
-
-bash
+```bash
 # GNOME
-gsettings set org.gnome.desktop.background picture-uri "file://$OUTPUT_FILE"
-
+gsettings set org.gnome.desktop.background picture-uri \"file://$OUTPUT_FILE\"
 # KDE
-plasma-apply-colorscheme && qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops(); for (i=0;i<allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = "org.kde.image"; d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General"); d.writeConfig("Image", "file://$OUTPUT_FILE"); }'
-
+plasma-apply-colorscheme && qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops(); for (i=0;i<allDesktops.length;i++) { d = allDesktops[i]; d.wallpaperPlugin = \"org.kde.image\"; d.currentConfigGroup = Array(\"Wallpaper\", \"org.kde.image\", \"General\"); d.writeConfig(\"Image\", \"file://$OUTPUT_FILE\"); }'
 # XFCE
-xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s "$OUTPUT_FILE"
-📁 Estructura de archivos
-text
+xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -s \"$OUTPUT_FILE\"
+```
+
+## 📁 Estructura de archivos
+```
 wallpaper-update/
 ├── wallpaper_update.sh    # Script principal
 ├── README.md              # Este archivo
@@ -194,32 +193,24 @@ wallpaper-update/
 └── examples/
     ├── crontab.example    # Ejemplos de crontab
     └── bashrc.example     # Ejemplos de alias
-🤝 Contribuir
-¡Las contribuciones son bienvenidas!
-
-Fork el proyecto
-
-Crea tu rama de características (git checkout -b feature/AmazingFeature)
-
-Commit tus cambios (git commit -m 'Add some AmazingFeature')
-
-Push a la rama (git push origin feature/AmazingFeature)
-
-Abre un Pull Request
-
-📄 Licencia
-Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
-
-🙏 Agradecimientos
-ImageMagick - Por la poderosa herramienta de manipulación de imágenes
-
-La comunidad de Linux - Por su constante inspiración y soporte
-
-📞 Soporte
+```
+## 🤝 Contribuir
+¡Las contribuciones son bienvenidas! 
+1. Fork el proyecto
+2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+## 📄 Licencia
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+## 🙏 Agradecimientos
+- [ImageMagick](https://imagemagick.org/) - Por la poderosa herramienta de manipulación de imágenes
+- La comunidad de Linux - Por su constante inspiración y soporte
+## 📞 Soporte
 Si encuentras algún problema o tienes sugerencias:
+- Abre un [Issue](https://github.com/tu-usuario/wallpaper-update/issues)
+- Envía un [Pull Request](https://github.com/tu-usuario/wallpaper-update/pulls)
+---
 
-Abre un Issue
+⭐ **¡No olvides darle una estrella al repositorio si te es útil!** ⭐
 
-Envía un Pull Request
-
-⭐ ¡No olvides darle una estrella al repositorio si te es útil! ⭐
