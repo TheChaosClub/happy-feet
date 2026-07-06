@@ -1,0 +1,19 @@
+# Personal
+priv/
+data/
+
+# Archivos de respaldo
+*.swp
+*.swo
+*~
+
+# Directorios de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
